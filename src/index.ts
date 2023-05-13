@@ -112,7 +112,7 @@ const getMatrix = (input: string[]) => {
 
   if (!isDataValid) {
     throw new Error(
-      `Variants data is invalid - declared matrix size (${height}, ${width}) do not reflect the size of actual matrix or data type for each value is not integer.`
+      `Variants data is invalid - declared matrix size (${height}, ${width}) does not reflect the size of actual matrix or data type for each value is not integer.`
     );
   }
 
@@ -164,7 +164,7 @@ const main = async () => {
 
     const ranking = weightedYValues.map((row) => getRoundedValue(getSum(row)));
 
-    const output = getOutput({ labels, ranking })
+    const output = getOutput({ labels, ranking });
 
     console.log("\n✅ Calculations completed!\n\n🍪 Results:");
 
