@@ -52,8 +52,8 @@ const getCriteria = (input: string[]) => {
         const previousY = waypoints[index - 1][1];
 
         const isWaypointValid = isDecreasing
-          ? currentY < previousY
-          : currentY > previousY;
+          ? currentY <= previousY
+          : currentY >= previousY;
 
         return isWaypointValid;
       });
@@ -97,13 +97,15 @@ const getMatrix = (input: string[]) => {
     return isNotSize && isNotCriteria;
   });
 
-  const labels = data.map((line) => line.split(" ").slice(0, 1)[0]);
-  const matrix = data.map((line) => {
-    const stringValues = line.split(" ").slice(1);
-    const values = stringValues.map((value) => +value);
+  const labels = data.map((line) => line.split(" ").slice(0, 1)[0]).slice(1);
+  const matrix = data
+    .map((line) => {
+      const stringValues = line.split(" ").slice(1);
+      const values = stringValues.map((value) => +value);
 
-    return values;
-  });
+      return values;
+    })
+    .slice(1);
 
   const isDataValid =
     !matrix.flat().some((value) => isNaN(value) || typeof value !== "number") &&
@@ -116,7 +118,7 @@ const getMatrix = (input: string[]) => {
     );
   }
 
-  return { labels, matrix };
+  return { labels: labels.slice(1), matrix: matrix.slice(1) };
 };
 
 const getBoundingWaypoints = (x: number, waypoints: Point[]) => {

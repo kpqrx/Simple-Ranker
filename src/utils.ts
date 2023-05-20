@@ -39,4 +39,4 @@ export const getOutput = ({
 }) =>
   labels
     .map((label, index) => ({ label, value: ranking[index] }))
-    .sort((a, b) => a.value - b.value);
+    .sort((a, b) => b.value - a.value);
